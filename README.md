@@ -1,2 +1,1 @@
-# synchrony-assignment
-assignment by synchrony
+# assessment
