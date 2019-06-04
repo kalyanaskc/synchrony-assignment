@@ -1,30 +1,33 @@
 package com.synchrony.assignment.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.synchrony.assignment.beans.UserInformation;
+import com.synchrony.assignment.beans.UserDetails;
 import com.synchrony.assignment.repository.UserInformationRepository;
 
-@Component
+/**
+ * Service class for user operations
+ * */
+@Service
 public class UserInformationServiceImpl implements UserInformationService {
 
 	@Autowired
 	private UserInformationRepository userInformationRepository;
 
 	@Override
-	public Boolean registerUser(UserInformation userInformation) {
+	public Boolean registerUser(UserDetails userInformation) {
 		userInformationRepository.save(userInformation);
 		return true;
 	}
 
 	@Override
-	public UserInformation userDetails(String userName) {
+	public UserDetails userDetails(String userName) {
 		return userInformationRepository.findByUserName(userName);
 	}
 
 	@Override
-	public UserInformation updateUserInformationWithAlbumId(UserInformation userInformation) {
+	public UserDetails updateUserInformationWithAlbumId(UserDetails userInformation) {
 		return userInformationRepository.save(userInformation);
 	}
 

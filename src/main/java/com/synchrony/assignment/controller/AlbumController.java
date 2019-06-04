@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.synchrony.assignment.album.response.AlbumResponse;
 import com.synchrony.assignment.album.response.UserResponse;
-import com.synchrony.assignment.beans.UserInformation;
+import com.synchrony.assignment.beans.UserDetails;
 import com.synchrony.assignment.imgur.response.AlbumCreationResponse;
 import com.synchrony.assignment.imgur.response.ImageCreationResponse;
 import com.synchrony.assignment.service.ImgurAlbumService;
@@ -23,7 +24,10 @@ import com.synchrony.assignment.service.ImgurImageService;
 import com.synchrony.assignment.service.UserAuthenticationService;
 import com.synchrony.assignment.service.UserInformationService;
 
-@Controller
+/**
+ * Controller class for album operations
+ * */
+@RestController
 public class AlbumController {
 
 	@Autowired
@@ -48,7 +52,7 @@ public class AlbumController {
 
 		final String userName = userAuthenticationService.getUserName(authorization);
 		String albumId = "";
-		final UserInformation userDetails = userInformationService.userDetails(userName);
+		final UserDetails userDetails = userInformationService.userDetails(userName);
 		if (userDetails != null && userDetails.getAlbumId() != null) {
 			albumId = userDetails.getAlbumId();
 		} else {
@@ -70,7 +74,7 @@ public class AlbumController {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		final String userName = userAuthenticationService.getUserName(authorization);
-		final UserInformation userDetails = userInformationService.userDetails(userName);
+		final UserDetails userDetails = userInformationService.userDetails(userName);
 		final AlbumResponse viewImages = imgurImageService.viewImages(userDetails.getAlbumId());
 		UserResponse userResponse = new UserResponse();
 		userDetails.setPassword("**********");
@@ -86,7 +90,7 @@ public class AlbumController {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		final String userName = userAuthenticationService.getUserName(authorization);
-		final UserInformation userDetails = userInformationService.userDetails(userName);
+		final UserDetails userDetails = userInformationService.userDetails(userName);
 		imgurImageService.deleteImage(userDetails.getDeleteAlbumId());
 		return new ResponseEntity<String>("Album Deleted Successfully", HttpStatus.OK);
 	}

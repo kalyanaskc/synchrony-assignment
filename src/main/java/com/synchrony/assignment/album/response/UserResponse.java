@@ -1,17 +1,17 @@
 package com.synchrony.assignment.album.response;
 
-import com.synchrony.assignment.beans.UserInformation;
+import com.synchrony.assignment.beans.UserDetails;
 
 public class UserResponse {
-	private UserInformation userInformation;
+	private UserDetails userInformation;
 
 	private AlbumResponse albumResponse;
 
-	public UserInformation getUserInformation() {
+	public UserDetails getUserInformation() {
 		return userInformation;
 	}
 
-	public void setUserInformation(UserInformation userInformation) {
+	public void setUserInformation(UserDetails userInformation) {
 		this.userInformation = userInformation;
 	}
 

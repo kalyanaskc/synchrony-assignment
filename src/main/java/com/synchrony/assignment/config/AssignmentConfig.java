@@ -1,4 +1,4 @@
-package com.synchrony.assignment;
+package com.synchrony.assignment.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

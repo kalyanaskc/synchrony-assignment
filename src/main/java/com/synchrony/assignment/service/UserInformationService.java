@@ -2,15 +2,15 @@ package com.synchrony.assignment.service;
 
 import org.springframework.stereotype.Service;
 
-import com.synchrony.assignment.beans.UserInformation;
+import com.synchrony.assignment.beans.UserDetails;
 
 @Service
 public interface UserInformationService {
 
-	public Boolean registerUser(UserInformation userInformation);
+	public Boolean registerUser(UserDetails userInformation);
 
-	public UserInformation userDetails(String userName);
+	public UserDetails userDetails(String userName);
 
-	public UserInformation updateUserInformationWithAlbumId(UserInformation userInformation);
+	public UserDetails updateUserInformationWithAlbumId(UserDetails userInformation);
 
 }

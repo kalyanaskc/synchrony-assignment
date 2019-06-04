@@ -39,7 +39,7 @@ public class ImgurImageServiceImpl implements ImgurImageService {
 	public ImageCreationResponse addImage(final String albumId, final MultipartFile file) {
 		final HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-		headers.add("Authorization", "Bearer " + accessTokenService.getAccessToken().getAccessToken());
+		headers.add(Constants.AUTH_HEADER, Constants.BEARER + accessTokenService.getAccessToken().getAccessToken());
 		Path tempFile = null;
 		try {
 			tempFile = Files.createTempFile(null, null);
