@@ -16,19 +16,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.synchrony.assignment.beans.UserAddress;
 import com.synchrony.assignment.beans.UserDetails;
 
-//@RunWith(SpringRunner.class)
-//@SpringBootTest
+@RunWith(SpringRunner.class)
+@SpringBootTest
 @AutoConfigureMockMvc
 public class AssignmentApplicationTests {
 
-	//@Test
+	@Test
 	public void contextLoads() {
 	}
 
 	@Autowired
 	private MockMvc mockMvc;
 
-	//@Test
+	@Test
 	public void shouldReturnDefaultMessage() throws Exception {
 
 		UserDetails userInformation = new UserDetails();

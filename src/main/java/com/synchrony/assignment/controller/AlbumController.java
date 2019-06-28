@@ -2,10 +2,11 @@ package com.synchrony.assignment.controller;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +31,7 @@ import com.synchrony.assignment.service.UserInformationService;
 @RestController
 public class AlbumController {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(AlbumController.class);
 	@Autowired
 	private UserAuthenticationService userAuthenticationService;
 
@@ -46,6 +48,7 @@ public class AlbumController {
 	@ResponseStatus
 	public ResponseEntity<ImageCreationResponse> uploadImage(@RequestHeader("authorization") final String authorization,
 			@RequestParam("file") final MultipartFile file) throws IOException {
+		LOGGER.info("uploading image");
 		if (!userAuthenticationService.isUserAuthenticated(authorization)) {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
@@ -70,6 +73,7 @@ public class AlbumController {
 	@RequestMapping(value = "/album", method = RequestMethod.GET)
 	@ResponseStatus
 	public ResponseEntity<UserResponse> viewAlbum(@RequestHeader("authorization") final String authorization) {
+		LOGGER.info("viewing album");
 		if (!userAuthenticationService.isUserAuthenticated(authorization)) {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
@@ -86,6 +90,7 @@ public class AlbumController {
 	@RequestMapping(value = "/album", method = RequestMethod.DELETE)
 	@ResponseStatus
 	public ResponseEntity<String> deleteAlbum(@RequestHeader("authorization") final String authorization) {
+		LOGGER.info("Deleting album");
 		if (!userAuthenticationService.isUserAuthenticated(authorization)) {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import org.springframework.stereotype.Component;
 
 /**
- * POJO for User Details
+ * Entity for User Details
  * */
 @Component
 @Entity(name = "USER_DETAILS")
