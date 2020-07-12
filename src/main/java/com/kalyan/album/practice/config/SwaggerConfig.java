@@ -18,7 +18,7 @@ public class SwaggerConfig {
 	@Bean
 	public Docket productApi() {
 		return new Docket(DocumentationType.SWAGGER_2)
-				.select().apis(RequestHandlerSelectors.basePackage("com.synchrony.assignment"))
+				.select().apis(RequestHandlerSelectors.basePackage("com.kalyan.album.practice"))
 	            .paths(PathSelectors.regex("/.*"))
 	            .build().apiInfo(apiEndPointsInfo());
 	}

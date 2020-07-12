@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kalyan.album.practice.beans.UserDetails;
 import com.kalyan.album.practice.repository.UserInformationRepository;
 
-import sun.misc.BASE64Decoder;
-
+import java.util.Base64;
 /**
  * Service class for user authentication operations
  */
@@ -27,30 +26,24 @@ public class UserAuthenticationServiceImpl implements UserAuthenticationService 
 	private Boolean authenticateUser(String authorizationHeader) {
 		String[] authParts = authorizationHeader.split("\\s+");
 		String userNamePassword;
-		try {
-			byte[] decodeBuffer = new BASE64Decoder().decodeBuffer(authParts[1]);
-			userNamePassword = new String(decodeBuffer);
-			String[] split = userNamePassword.split(":");
-			UserDetails userInformation = userInformationRepository.findByUserName(split[0]);
-			return userInformation != null && userInformation.getPassword() != null
-					&& userInformation.getPassword().equals(split[1]);
-		} catch (IOException e) {
-			return false;
-		}
+		//byte[] decodeBuffer = new Base64.Decoder.decodeBuffer(authParts[1]);
+		byte[] decodeBuffer = Base64.getDecoder().decode(authParts[1]);
+		userNamePassword = new String(decodeBuffer);
+		String[] split = userNamePassword.split(":");
+		UserDetails userInformation = userInformationRepository.findByUserName(split[0]);
+		return userInformation != null && userInformation.getPassword() != null
+				&& userInformation.getPassword().equals(split[1]);
 	}
 
 	@Override
 	public String getUserName(String authorizationHeader) {
 		String[] authParts = authorizationHeader.split("\\s+");
 		String userNamePassword;
-		try {
-			byte[] decodeBuffer = new BASE64Decoder().decodeBuffer(authParts[1]);
-			userNamePassword = new String(decodeBuffer);
-			String[] split = userNamePassword.split(":");
-			return split[0];
-		} catch (IOException e) {
-			return "";
-		}
+		//byte[] decodeBuffer = new BASE64Decoder().decodeBuffer(authParts[1]);
+		byte[] decodeBuffer = Base64.getDecoder().decode(authParts[1]);
+		userNamePassword = new String(decodeBuffer);
+		String[] split = userNamePassword.split(":");
+		return split[0];
 	}
 
 }
