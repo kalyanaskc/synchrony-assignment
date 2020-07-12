@@ -9,10 +9,10 @@
 		<version>2.1.4.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.synchrony.assignment</groupId>
-	<artifactId>synchrony-assignment</artifactId>
+	<groupId>com.kalyan.album.practice</groupId>
+	<artifactId>kalyan-imgur-api-practice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>synchrony-assignment</name>
+	<name>kalyan-imgur-api-practice</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
